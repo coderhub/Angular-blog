@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="blogApp">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+
+    <title>Blog Template</title>
+    
+  </head>
+  <body ng-controller="postController">
+
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"><img src="img/brand-img.png"></a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
+            <li><a href="#">About</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">Separated link</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+          <form class="navbar-form navbar-left top-search" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search">
+            </div>
+          </form>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Log In</a></li>
+            <li><button class="btn btn-default">Sign Up</button></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+    <div class="blog-container">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+
+          
+            <div class="col-md-12  card-post">
+            <div class="row">
+              <div class="col-md-6">
+            <form ng-submit="posts.add()">
+            <h4>Add Post</h4><br />
+            <label>Title</label>
+            <input type="text" class="form-control" ng-model="posts.title" min="3"/><br />
+            <label>Body</label>
+            <input type="textarea" class="form-control" ng-model="posts.text" min="3"/>
+            <br />
+            <button type="submit" class="btn btn-block btn-primary">Post</button>
+            </form>
+            <br>
+            </div>
+
+
+            <div class="col-md-6">
+              <h2>Angular Blog</h2>
+              <p>This is an example of a blog made with angular</p>
+            </div>
+            </div>
+          </div>
+          
+
+
+            <div class="card-container">
+
+            <div class="col-md-4" ng-repeat="post in posts">
+            <div class="card">
+              <div class="card-inner">
+                <div class="card-head"><img class="card-avatar" src="img/me.png" alt="avatar"> <h4>{{post.title}}</h4></div>
+
+                <div class="blog-img-container"> <img src="img/img1.jpeg" alt="Blog Image"></div>
+                <div class="card-text-container"> <p>{{post.postText | limitTo: 150}}...</p> </div>
+                <div class="card-footer-container"> 
+                  <div class="card-date-footer">{{post.time | date}}</div>
+                  <a href="#" class="card-comment-footer">{{post.comments.length}} Comment<span ng-show="post.comments.length > 1">s</span></a>
+                  <div class="card-heart-footer" ng-click="post.hearts = post.hearts + 1"><img class="card-heart" src="img/heart.png" height="30" width="34" >{{post.hearts}}</div> 
+                </div>
+
+              </div>
+            </div>
+            </div>
+
+            </div>
+
+
+        </div>
+        
+
+        <!--<div class="col-md-8">
+        <div class="row">
+          <div class="col-md-8" ng-repeat="post in posts">
+            <p><b>{{post.time | date}}</b> - {{post.category}}</p>
+            <h3>{{post.title}}</h3>
+            <p>{{post.postText | limitTo: 150}}...</p><br />
+            <h5 ng-show="post.comments.length > 0">Comments {{post.comments.length}}</h5>
+            <div class="comments" ng-repeat="comment in post.comments">
+                <p><b>By {{comment.author}}</b> - {{comment.posted}}</p>
+               <p>{{comment.text}}</p>
+                
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>  -->
+    </div>
+  </div>
+
+    
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="blogApp.js"></script>
+  </body>
+</html>
